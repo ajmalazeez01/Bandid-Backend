@@ -1,12 +1,14 @@
 const express = require("express");
 const admin_router = express();
-const { AdminLogin } = require("../Controllers/Admin/AdminLogin");
+const { AdminLogin, jwtChecker } = require("../Controllers/Admin/AdminLogin");
 const { getLocationAndBand } = require("../Controllers/Admin/getLocationAndBand");
 const { addLocation, findLocation, editLocation, blocklocation } = require("../Controllers/Admin/location.controllers");
 const { addBand, findBand, editBand, blockBand } = require("../Controllers/Admin/band.controllers");
 
 
 admin_router.post('/login',AdminLogin)
+
+admin_router.get('/admin/jwt',jwtChecker)
 
 admin_router.post('/location',addLocation)
 
@@ -24,7 +26,7 @@ admin_router.post('/edit-location',editLocation)
 
 admin_router.patch('/block-band',blockBand)
 
-// admin_router.patch('/block-location',blocklocation)
+admin_router.patch('/block-location',blocklocation)
 
 
 

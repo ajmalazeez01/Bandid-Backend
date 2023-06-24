@@ -3,7 +3,7 @@ const LocationModel = require('../../Models/LocationModel');
 const { default: mongoose } = require('mongoose');
 
 const addLocation = asyncHandler(async(req, res) => {
-  console.log('location');
+  try {
   const { name } = req.body
   const location = await LocationModel.findOne({ name : name});
   if(!location){
@@ -20,9 +20,13 @@ const addLocation = asyncHandler(async(req, res) => {
     res.json({message : true})
   }
   
+  } catch (error) {
+    console.log(error);
+  }
 })
 
 const findLocation = async(req, res) => {
+  try {
   const {id} = req.body
   let objectId =new mongoose.Types.ObjectId(id) 
   const band = await LocationModel.findOne({ _id :objectId}); 
@@ -32,10 +36,14 @@ const findLocation = async(req, res) => {
     }else{ 
       res.json({message : false})
     } 
+  } catch (error) {
+    console.log(error);
+  }
 }
 
 const editLocation = async(req, res) => {
-  const {id,name} = req.body
+  try {
+    const {id,name} = req.body
   const band = await LocationModel.updateOne({_id:id},{ $set: { name: name } }); 
   console.log(band);
   if(band){
@@ -44,11 +52,26 @@ const editLocation = async(req, res) => {
       }else{ 
         res.json({message : false})
       } 
+  } catch (error) {
+    console.log(error);
+  }
 
 }
 
-const blocklocation = async(req,res) => {
-
+const blocklocation = async(req, res) => {
+  try {
+    const { id } = req.query
+  const find = await LocationModel.findById(id);
+  if (find.status == true) {
+    await LocationModel.findByIdAndUpdate(id, { $set: { status: false } });
+    res.json({ success: true});
+  }else{
+    await LocationModel.findByIdAndUpdate(id, { $set: { status: true } });
+    res.json({ success: true });
+  }
+  } catch (error) {
+    console.log(error);
+  }
 }
 
 

@@ -27,8 +27,35 @@ const AdminLogin = async (req, res) => {
   }
 };
 
+
+
+
+
+
+const jwtChecker = async (req, res) => {
+  console.log('jwt')
+  if (
+    req.headers.authorization &&
+    req.headers.authorization.startsWith("Bearer")
+  ) {
+    const token = req.headers.authorization.split(" ")[1];
+    const decoded = jwt.verify(token, process.env.JWT_SECRET);
+    console.log(decoded)
+    if(decoded){
+        const email=decoded.email
+        const data=await AdminModel.findOne({email:email})
+        res.json({data,status:true})
+       
+      }else{
+       res.json({status:false})
+      }
+
+  }
+}
+
 module.exports = {
   AdminLogin,
+  jwtChecker,
 };
 
 
