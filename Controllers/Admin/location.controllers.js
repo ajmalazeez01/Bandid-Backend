@@ -5,7 +5,7 @@ const { default: mongoose } = require('mongoose');
 const addLocation = asyncHandler(async(req, res) => {
   try {
   const { name } = req.body
-  const location = await LocationModel.findOne({ name : name});
+  const location = await LocationModel.findOne({ name : name.toLowerCase()});
   if(!location){
   const newLocation = new LocationModel({ 
     name:name

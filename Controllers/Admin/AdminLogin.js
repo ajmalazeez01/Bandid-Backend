@@ -40,10 +40,10 @@ const jwtChecker = async (req, res) => {
   ) {
     const token = req.headers.authorization.split(" ")[1];
     const decoded = jwt.verify(token, process.env.JWT_SECRET);
-    console.log(decoded)
+    // console.log(decoded)
     if(decoded){
-        const email=decoded.email
-        const data=await AdminModel.findOne({email:email})
+        const id = decoded._id
+        const data=await AdminModel.findOne({_id : id})
         res.json({data,status:true})
        
       }else{

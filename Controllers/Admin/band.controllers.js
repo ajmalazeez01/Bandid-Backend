@@ -5,7 +5,8 @@ const BandModel = require("../../Models/Admin/BandModel");
 const addBand = async(req, res) => {
  try {
   const { name } = req.body
-  const band = await BandModel.findOne({ name : name});
+  const band = await BandModel.findOne({ name : name.toLowerCase()});
+  console.log(band);
   if(!band){
   const newBand = new BandModel({ 
     name:name
