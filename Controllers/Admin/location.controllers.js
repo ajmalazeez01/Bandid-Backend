@@ -1,6 +1,6 @@
 const asyncHandler = require('express-async-handler');
-const LocationModel = require('../../Models/LocationModel');
 const { default: mongoose } = require('mongoose');
+const LocationModel = require('../../Models/Admin/LocationModel');
 
 const addLocation = asyncHandler(async(req, res) => {
   try {

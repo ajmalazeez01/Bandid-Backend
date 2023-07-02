@@ -1,5 +1,5 @@
 const BandModel = require('../../Models/Admin/BandModel');
-const LocationModel = require('../../Models/LocationModel');
+const LocationModel = require('../../Models/Admin/LocationModel');
 const getLocationAndBand = async (req, res) => {
   try {
     const location = await LocationModel.find();

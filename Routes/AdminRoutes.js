@@ -2,7 +2,7 @@ const express = require("express");
 const admin_router = express();
 const { AdminLogin, jwtChecker } = require("../Controllers/Admin/AdminLogin");
 const { getLocationAndBand } = require("../Controllers/Admin/getLocationAndBand");
-const { addLocation, findLocation, editLocation, blocklocation } = require("../Controllers/Admin/location.controllers");
+const { addLocation,findLocation, editLocation, blocklocation } = require("../Controllers/Admin/location.controllers");
 const { addBand, findBand, editBand, blockBand } = require("../Controllers/Admin/band.controllers");
 
 
@@ -30,4 +30,4 @@ admin_router.patch('/block-location',blocklocation)
 
 
 
-module.exports = admin_router;    
+module.exports = admin_router;
