@@ -28,7 +28,6 @@ const AdminLogin = async (req, res) => {
 };
 
 const jwtChecker = async (req, res) => {
-  console.log(req.query.role);
   console.log("jwt");
   if (
     req.headers.authorization &&
@@ -39,17 +38,16 @@ const jwtChecker = async (req, res) => {
     // console.log(decoded)
     if (decoded) {
       const id = decoded._id;
-      if (req.query.role == 'admin' ) {
+      if (req.query.role == "admin") {
         // console.log('admin');
         const data = await AdminModel.findOne({ _id: id });
         res.json({ data, status: true });
-      }else if(req.query.role == 'vendor' ){
+      } else if (req.query.role == "vendor") {
         // console.log('vebdor');
         const data = await SignupModel.findOne({ _id: id });
         res.json({ data, status: true });
-      } 
-    }
-    else {
+      }
+    } else {
       res.json({ status: false });
     }
   }

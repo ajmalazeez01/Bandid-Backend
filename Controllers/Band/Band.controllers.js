@@ -1,5 +1,5 @@
 const bcrypt = require("bcrypt");
-const jwt = require('jsonwebtoken');
+const jwt = require("jsonwebtoken");
 const SignupModel = require("../../Models/Band/SignupModel");
 const sendMail = require("../../Validation/Helpers/sendMail");
 const bandValidationSchema = require("../../Validation/bandValidation");
@@ -53,17 +53,17 @@ const login = async (req, res) => {
     if (bandExist) {
       const matchPassword = await bcrypt.compare(password, bandExist.password);
       if (matchPassword) {
-          const { email } = req.body;
-          const data = { email: email };
-          const token = jwt.sign(data, process.env.JWT_SECRET, {
+        const { email } = req.body;
+        const data = { email: email };
+        const token = jwt.sign(data, process.env.JWT_SECRET, {
           expiresIn: 86400,
         });
-        res.json({ success: true , token:token });
+        res.json({ success: true, token: token });
       } else {
-        res.json({ message: "password is incorrect" });
+        res.json({ message: "Invalid Credentials" });
       }
     } else {
-      res.json({ message: "Email is inccorect" });
+      res.json({ message: "Invalid Credentials" });
     }
   } catch (error) {
     console.log(error);
