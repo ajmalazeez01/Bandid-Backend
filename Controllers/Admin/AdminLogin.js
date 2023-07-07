@@ -16,7 +16,7 @@ const AdminLogin = async (req, res) => {
         });
         res.json({ success: true, token: token });
       } else {
-        res.json({ message: "Email or password is incorrect" });
+        res.json({ message: "Check your credentials" });
       }
     } else {
       res.json({ message: "Check your credentials" });

@@ -53,17 +53,17 @@ const login = async (req, res) => {
     if (bandExist) {
       const matchPassword = await bcrypt.compare(password, bandExist.password);
       if (matchPassword) {
-        const { email } = req.body;
-        const data = { email: email };
+        const data = { id: bandExist._id, type: "vendor" };
         const token = jwt.sign(data, process.env.JWT_SECRET, {
           expiresIn: 86400,
         });
-        res.json({ success: true, token: token });
+        res.json({ success: true, token: token, email :bandExist.email ,location : bandExist.location});
       } else {
         res.json({ message: "Invalid Credentials" });
       }
-    } else {
-      res.json({ message: "Invalid Credentials" });
+    }
+     else {
+      res.json({ message: "Invalid user" });
     }
   } catch (error) {
     console.log(error);
