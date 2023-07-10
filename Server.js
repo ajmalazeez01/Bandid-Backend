@@ -4,7 +4,8 @@ const mongoose = require('./Config/db');
 require('dotenv').config();
 const admin = require('./Routes/AdminRoutes');
 const band = require('./Routes/BandRoutes');
-const morgan = require('morgan')
+const user = require('./Routes/UserRoutes');
+const morgan = require('morgan');
 
 const app = express();
 
@@ -32,6 +33,7 @@ app.use(cors({
 
 app.use('/admin', admin);
 app.use('/band', band);
+app.use('/user', user);
 
 app.listen(8000, () => {
   console.log("Server connected");

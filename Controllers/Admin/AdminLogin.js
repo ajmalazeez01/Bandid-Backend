@@ -2,6 +2,7 @@ const AdminModel = require("../../Models/Admin/AdminModel");
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
 const SignupModel = require("../../Models/Band/SignupModel");
+const UserModel = require("../../Models/User/UserModel");
 
 const AdminLogin = async (req, res) => {
   try {
@@ -45,6 +46,11 @@ const jwtChecker = async (req, res) => {
       } else if (req.query.role == "vendor") {
         // console.log('vebdor');
         const data = await SignupModel.findOne({ _id: id });
+        res.json({ data, status: true });
+      }
+       else if (req.query.role == "user") {
+        console.log('user token');
+        const data = await UserModel.findOne({ _id: id });
         res.json({ data, status: true });
       }
     } else {

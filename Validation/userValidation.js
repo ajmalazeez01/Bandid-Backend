@@ -1,6 +1,6 @@
 const Yup = require("yup");
 
-const bandValidationSchema = Yup.object().shape({
+const userValidationSchema = Yup.object().shape({
   name: Yup.string()
     .required("Name is required")
     .matches(/^[a-zA-Z\s]+$/, "Name can only include letters"),
@@ -12,7 +12,6 @@ const bandValidationSchema = Yup.object().shape({
   email: Yup.string()
     .email("Invalid email address")
     .required("Email is required"),
-  location: Yup.string().required("Location is required"),
   password: Yup.string()
     .required("Password is required")
     .min(6, "Password must be at least 6 characters")
@@ -26,4 +25,4 @@ const bandValidationSchema = Yup.object().shape({
   ),
 });
 
-module.exports = bandValidationSchema;
+module.exports = userValidationSchema;

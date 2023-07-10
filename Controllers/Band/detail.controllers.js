@@ -3,8 +3,7 @@ const DetailModel = require("../../Models/Band/DetailModel");
 
 const bandDetail = async (req, res) => {
    try {
-    const {email,name,mobile,website,service,description,location,file} = req.body
-    console.log(req.body);
+    const {email,name,category,mobile,website,service,description,location,file} = req.body
     const detailExist = await DetailModel.findOne({ email: email });
     if (detailExist) {
       res.json({ message: "User already been exit" });
@@ -12,6 +11,7 @@ const bandDetail = async (req, res) => {
         const bandData = new DetailModel({
             email: email,
             name: name,
+            category : category,
             mobile: mobile,
             website : website,
             service : service,

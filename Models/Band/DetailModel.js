@@ -5,6 +5,10 @@ const bandDetailSchema = mongoose.Schema({
         type : String,
         required : true,
     },
+    category : {
+        type : String,
+        required : true,
+    },
     email : {
         type : String,
         required : true,
@@ -18,6 +22,18 @@ const bandDetailSchema = mongoose.Schema({
         required : true,
     },
     location : {
+        type : String,
+        required : true,
+    },
+    description : {
+        type : String,
+        required : true,
+    },
+    service : {
+        type : String,
+        required : true,
+    },
+    file : {
         type : String,
         required : true,
     },

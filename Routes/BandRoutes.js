@@ -16,7 +16,7 @@ band_router.post('/login',login)
 
 band_router.post('/band-detail',authorization,bandDetail)
 
-band_router.get('/category',authorization,category)
+band_router.get('/category',category)
 
 
-module.exports = band_router;    
+module.exports = band_router;
