@@ -15,18 +15,18 @@ const user = async (req, res) => {
 }
 
 const blockUser = async (req, res) => {
-    try {
-      const { id } = req.query;
-      const find = await UserModel.findById(id);
-      console.log(find);
-      if (find.status == true) {
-        await UserModel.findByIdAndUpdate(id, { $set: { status: false } });
-        res.json({ success: true });
-      } else {
-        await UserModel.findByIdAndUpdate(id, { $set: { status: true } });
-        res.json({ success: true, message: "Band not found" });
-      }
-    } catch (error) {
+  try {
+    const { id } = req.query;
+    const find = await UserModel.findById(id);
+    console.log(find);
+    if (find.status === true) {
+      await UserModel.findByIdAndUpdate(id, { $set: { status: false } });
+      res.json({ success: true });
+    } else {
+      await UserModel.findByIdAndUpdate(id, { $set: { status: true } });
+      res.json({ success: true, message: "Band not found" });
+    }
+  } catch (error) {
       console.log(error);
     }
   };

@@ -57,7 +57,7 @@ const login = async (req, res) => {
         const token = jwt.sign(data, process.env.JWT_SECRET, {
           expiresIn: 86400,
         });
-        res.json({ success: true, token: token, email :bandExist.email ,location : bandExist.location});
+        res.json({ success: true, token: token, email :bandExist.email ,location : bandExist.location,id: bandExist._id});
       } else {
         res.json({ message: "Invalid Credentials" });
       }

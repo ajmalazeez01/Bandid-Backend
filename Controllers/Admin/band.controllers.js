@@ -62,7 +62,7 @@ const blockBand = async (req, res) => {
     const { id } = req.query;
     const find = await BandModel.findById(id);
     console.log(find);
-    if (find.status == true) {
+    if (find.status === true) {
       await BandModel.findByIdAndUpdate(id, { $set: { status: false } });
       res.json({ success: true });
     } else {

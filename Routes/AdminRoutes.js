@@ -16,23 +16,23 @@ admin_router.post('/location',authorization,addLocation)
 
 admin_router.post('/band',authorization,addBand)
 
-admin_router.get('/location-and-bands',getLocationAndBand)
+admin_router.get('/location-and-bands',authorization,getLocationAndBand)
 
-admin_router.post('/find-band',authorization,findBand)
+admin_router.post('/find-band',findBand)
 
-admin_router.post('/edit-band',authorization,editBand)
+admin_router.post('/edit-band',editBand)
 
-admin_router.post('/find-location',authorization,findLocation)
+admin_router.post('/find-location',findLocation)
 
-admin_router.post('/edit-location',authorization,editLocation)
+admin_router.post('/edit-location',editLocation)
 
-admin_router.patch('/block-band',authorization,blockBand)
+admin_router.patch('/block-band',blockBand)
 
-admin_router.patch('/block-location',authorization,blocklocation)
+admin_router.patch('/block-location',blocklocation)
 
 admin_router.get('/userManage',authorization,user)
 
-admin_router.patch('/block-user',authorization,blockUser)
+admin_router.patch('/block-user',blockUser)
 
 
 

@@ -4,6 +4,7 @@ const { getLocation } = require("../Controllers/Band/location.controllers");
 const { signup, verifyOtp, login } = require("../Controllers/Band/Band.controllers");
 const { bandDetail, category } = require("../Controllers/Band/detail.controllers");
 const { authorization } = require("../Middleware/authHandlers");
+const upload = require("../utilities/multer");
 
 
 band_router.get('/all-location',getLocation)
@@ -14,7 +15,7 @@ band_router.post('/otp',verifyOtp)
 
 band_router.post('/login',login)
 
-band_router.post('/band-detail',authorization,bandDetail)
+band_router.post('/band-detail/:id',upload.single('photo'),bandDetail)
 
 band_router.get('/category',category)
 
