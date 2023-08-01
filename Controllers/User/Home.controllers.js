@@ -1,3 +1,4 @@
+const { default: mongoose } = require("mongoose");
 const BandModel = require("../../Models/Admin/BandModel");
 const DetailModel = require("../../Models/Band/DetailModel");
 
@@ -14,6 +15,20 @@ const category = async (req, res) => {
   }
 };
 
+const categoryList = async (req, res) => {
+  try {
+    const category = req.params.name;
+    const bands = await DetailModel.find({ category: category });
+    if (bands.length === 0) {
+      console.log('helloooo');
+      res.status(404).json({ success: false });
+    } else {
+      res.json({ message: bands });
+    }
+  } catch (error) {
+    console.log(error);
+  }
+};
 
 const bandDetail = async (req, res) => {
   try {
@@ -31,4 +46,5 @@ const bandDetail = async (req, res) => {
 module.exports = {
   category,
   bandDetail,
+  categoryList,
 };

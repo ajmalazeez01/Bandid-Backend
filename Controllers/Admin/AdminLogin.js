@@ -6,8 +6,9 @@ const UserModel = require("../../Models/User/UserModel");
 
 const AdminLogin = async (req, res) => {
   try {
+    const {email} = req.body
     const { password } = req.body;
-    const admin = await AdminModel.findOne({ email: req.body.email });
+    const admin = await AdminModel.findOne({ email: email });
     if (admin) {
       const matchPassword = await bcrypt.compare(password, admin.password);
       if (matchPassword) {

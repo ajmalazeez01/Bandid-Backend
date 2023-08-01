@@ -2,8 +2,8 @@ const UserModel = require("../../Models/User/UserModel");
 
 const user = async (req, res) => {
     try {
-    const user = await UserModel.find({status : true});
-    // console.log(user);
+    const user = await UserModel.find();
+    console.log(user);
     if(!user){
         res.json({success : true})
       }else{
@@ -16,20 +16,22 @@ const user = async (req, res) => {
 
 const blockUser = async (req, res) => {
   try {
-    const { id } = req.query;
+    const { id } = req.params;
     const find = await UserModel.findById(id);
     console.log(find);
     if (find.status === true) {
       await UserModel.findByIdAndUpdate(id, { $set: { status: false } });
-      res.json({ success: true });
+      res.json({ message: true });
     } else {
       await UserModel.findByIdAndUpdate(id, { $set: { status: true } });
-      res.json({ success: true, message: "Band not found" });
+      res.json({ message: true});
     }
   } catch (error) {
       console.log(error);
     }
   };
+
+  
 
 module.exports = {
     user,

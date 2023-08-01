@@ -49,8 +49,9 @@ const verifyOtp = async (req, res) => {
 const login = async (req, res) => {
   try {
     const { email, password } = req.body;
-    const bandExist = await SignupModel.findOne({ email });
+    const bandExist = await SignupModel.findOne({ email,status:true,verify:true });
     if (bandExist) {
+      // console.log(bandExist);
       const matchPassword = await bcrypt.compare(password, bandExist.password);
       if (matchPassword) {
         const data = { id: bandExist._id, type: "vendor" };
@@ -59,11 +60,11 @@ const login = async (req, res) => {
         });
         res.json({ success: true, token: token, email :bandExist.email ,location : bandExist.location,id: bandExist._id});
       } else {
-        res.json({ message: "Invalid Credentials" });
+        res.json({ message: "Invalid Credentialsj" });
       }
     }
      else {
-      res.json({ message: "Invalid user" });
+      res.json({ message: "invalid credentials" });
     }
   } catch (error) {
     console.log(error);

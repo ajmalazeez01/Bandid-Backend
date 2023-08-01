@@ -2,6 +2,7 @@ const express = require('express');
 const cors = require('cors');
 const mongoose = require('./Config/db');
 require('dotenv').config();
+PORT = process.env.PORT
 const admin = require('./Routes/AdminRoutes');
 const band = require('./Routes/BandRoutes');
 const user = require('./Routes/UserRoutes');
@@ -22,19 +23,11 @@ app.use(cors({
   credentials: true,
 }));
 
-// const myMiddleware = (req, res, next) => {
-//   // Middleware logic goes here
-//   // ...
-
-//   next();
-// };
-
-// app.use(myMiddleware);
 
 app.use('/admin', admin);
 app.use('/band', band);
 app.use('/user', user);
 
-app.listen(8000, () => {
+app.listen(`${PORT}`, () => {
   console.log("Server connected");
 });

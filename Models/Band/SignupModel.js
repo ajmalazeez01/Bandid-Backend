@@ -23,7 +23,7 @@ const signupSchema = mongoose.Schema({
     },
     verify : {
         type : Boolean,
-        default : true,
+        default : false,
     },
     status : {
         type : Boolean,

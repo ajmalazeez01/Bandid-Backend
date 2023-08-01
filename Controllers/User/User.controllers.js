@@ -48,7 +48,7 @@ const verifyOtp = async (req, res) => {
 const login = async (req, res) => {
   try {
     const { email, password } = req.body;
-    const userExist = await UserModel.findOne({ email });
+    const userExist = await UserModel.findOne({ email , status: true });
     if (userExist) {
       const matchPassword = await bcrypt.compare(password, userExist.password);
       if (matchPassword) {
@@ -66,7 +66,7 @@ const login = async (req, res) => {
         res.json({ message: "Invalid Credentials" });
       }
     } else {
-      res.json({ message: "Invalid user" });
+      res.json({ message: "Invalid Credentials" });
     }
   } catch (error) {
     console.log(error);

@@ -17,6 +17,12 @@ const signupSchema = mongoose.Schema({
         type : String,
         required : true,
     },
+    file : {
+        type : String,
+    },
+    gender : {
+        type : String,
+    },
     status : {
         type : Boolean,
         default : true,
