@@ -9,24 +9,32 @@ const profileDetail = async (req, res) => {
     // console.log(pic);
     const updateDetail = await UserModel.updateMany(
       { email: Matchemail },
-      { $set: { file: pic, email: email, mobile: mobile, gender: gender,name:name } }
+      {
+        $set: {
+          file: pic,
+          email: email,
+          mobile: mobile,
+          gender: gender,
+          name: name,
+        },
+      }
     );
     if (!updateDetail) {
-      res.json({ message: 'not updated'});
+      res.json({ message: "not updated" });
     } else {
       res.json({ success: updateDetail });
     }
   } catch (err) {
     console.log(err);
-    res.status(401).json({ message: 'plese change the image and update' });
+    res.status(401).json({ message: "plese change the image and update" });
   }
 };
 
 const detailFetch = async (req, res) => {
   try {
-    const {email} = req.params
+    const { email } = req.params;
     console.log(email);
-    const userDetail = await UserModel.find({email:email});
+    const userDetail = await UserModel.find({ email: email });
     if (!userDetail) {
       res.json({ success: true });
     } else {
@@ -39,10 +47,17 @@ const detailFetch = async (req, res) => {
 
 const profiledetailsFetch = async (req, res) => {
   try {
-    const {email} = req.params
-    console.log(req.params);
-    const bookingDetail = await BookingModel.find({ email:email });
-  //   console.log(bookingDetail);
+    const { email, sortBy, sortOrder } = req.query;
+
+    const sortOptions = {};
+    if (sortBy) {
+      sortOptions[sortBy] = sortOrder === "desc" ? -1 : 1;
+    }
+
+    const bookingDetail = await BookingModel.find({ email: email }).sort(
+      sortOptions
+    );
+    //   console.log(bookingDetail);
     if (!bookingDetail) {
       res.json({ success: true });
     } else {
@@ -52,7 +67,6 @@ const profiledetailsFetch = async (req, res) => {
     console.log(error);
   }
 };
-
 
 module.exports = {
   profileDetail,

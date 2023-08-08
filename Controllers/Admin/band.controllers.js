@@ -77,18 +77,45 @@ const blockBand = async (req, res) => {
   }
 };
 
+
+
 const bandManage = async (req, res) => {
   try {
-  const band = await SignupModel.find();
-  if(!band){
-      res.json({success : true})
-    }else{
-      res.json({message : band})
+    const { searchQuery, sortBy, sortOrder, currentPage, itemsPerPage } =
+      req.query;
+    const page = parseInt(currentPage);
+    const limit = parseInt(itemsPerPage);
+
+    const skip = (page - 1) * limit;
+
+    const sortOptions = {};
+    if (sortBy) {
+      sortOptions[sortBy] = sortOrder === "desc" ? -1 : 1;
+    }
+    const searchCriteria = {
+      $or: [
+        { name: { $regex: searchQuery, $options: "i" } },
+        { email: { $regex: searchQuery, $options: "i" } },
+      ],
+    };
+
+    const totalCount = await SignupModel.countDocuments(searchCriteria);
+    const band = await SignupModel.find(searchCriteria)
+      .sort(sortOptions)
+      .skip(skip)
+      .limit(limit)
+      .lean();
+
+    if (!band || band.length === 0) {
+      return res.json({ message: "No bookings found", count: 0 });
+    } else {
+      res.json({ message: band, count: totalCount });
     }
   } catch (error) {
-      console.log(error);
+    console.log(error);
   }
-}
+};
+
 
 const blockband = async (req, res) => {
   try {
@@ -109,16 +136,41 @@ const blockband = async (req, res) => {
 
   const bandVerify = async (req, res) => {
     try {
-    const band = await SignupModel.find();
-    if(!band){
-        res.json({success : true})
-      }else{
-        res.json({message : band})
+      const { searchQuery, sortBy, sortOrder, currentPage, itemsPerPage } =
+        req.query;
+      const page = parseInt(currentPage);
+      const limit = parseInt(itemsPerPage);
+  
+      const skip = (page - 1) * limit;
+  
+      const sortOptions = {};
+      if (sortBy) {
+        sortOptions[sortBy] = sortOrder === "desc" ? -1 : 1;
+      }
+      const searchCriteria = {
+        $or: [
+          { name: { $regex: searchQuery, $options: "i" } },
+          { email: { $regex: searchQuery, $options: "i" } },
+          { location: { $regex: searchQuery, $options: "i" } },
+        ],
+      };
+  
+      const totalCount = await SignupModel.countDocuments(searchCriteria);
+      const band = await SignupModel.find(searchCriteria)
+        .sort(sortOptions)
+        .skip(skip)
+        .limit(limit)
+        .lean();
+  
+      if (!band || band.length === 0) {
+        return res.json({ message: "No bookings found", count: 0 });
+      } else {
+        res.json({ message: band, count: totalCount });
       }
     } catch (error) {
-        console.log(error);
+      console.log(error);
     }
-  }
+  };
 
   const blockverify = async (req, res) => {
     try {

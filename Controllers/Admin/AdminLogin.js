@@ -55,7 +55,8 @@ const jwtChecker = async (req, res) => {
         res.json({ data, status: true });
       }
     } else {
-      res.json({ status: false });
+      console.log('token error');
+      res.json({ error: 'Token is expired' });
     }
   }
 };

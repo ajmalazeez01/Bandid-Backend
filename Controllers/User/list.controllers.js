@@ -1,6 +1,5 @@
 const DetailModel = require("../../Models/Band/DetailModel");
 const ReviewModel = require("../../Models/User/ReviewModel");
-const { category } = require("./Home.controllers");
 
 const checkLocation = async (req, res) => {
   try {

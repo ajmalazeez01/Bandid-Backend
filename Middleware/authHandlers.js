@@ -3,6 +3,7 @@ const SignupModel = require('../Models/Band/SignupModel');
 const AdminModel = require('../Models/Admin/AdminModel');
 const UserModel = require('../Models/User/UserModel');
 
+
 const authorization = async (req, res, next) => {
   console.log(req.headers.authorization);
   if (
