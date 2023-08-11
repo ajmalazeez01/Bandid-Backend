@@ -17,11 +17,7 @@ mongoose();
 
 app.use(morgan("dev"))
 
-app.use(cors({
-  origin: [`http://www.bandid.site`],
-  methods: ["GET", "POST", "DELETE", "PUT", "PATCH"],
-  credentials: true,
-}));
+app.use(cors());
 
 app.use('/api/admin', admin);
 app.use('/api/band', band);
