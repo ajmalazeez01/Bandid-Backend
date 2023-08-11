@@ -47,6 +47,7 @@ const verifyOtp = async (req, res) => {
 
 const login = async (req, res) => {
   try {
+    console.log(req.body+'dsfkjghsdfgjkl');
     const { email, password } = req.body;
     const userExist = await UserModel.findOne({ email , status: true });
     if (userExist) {
