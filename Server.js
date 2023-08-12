@@ -23,9 +23,9 @@ app.use(cors({
   credentials: true,
 }));
 
-app.use('/api/admin', admin);
-app.use('/api/band', band);
-app.use('/api/user', user);
+app.use('/backend/admin', admin);
+app.use('/backend/band', band);
+app.use('/backend/user', user);
 
 
 app.listen(`${PORT}`, () => {
