@@ -18,8 +18,8 @@ mongoose();
 app.use(morgan("dev"))
 
 app.use(cors({
-  origin: [`https://bandid.site`],
-  methods: ["GET", "POST", "DELETE", "PUT", "PATCH"],
+  origin: [`https://www.bandid.site`],
+  methods: ["GET", "POST", "DELETE", "PUT", "PATCH","OPTIONS"],
   credentials: true,
 }));
 
