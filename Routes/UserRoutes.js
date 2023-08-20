@@ -23,8 +23,8 @@ user_router.post('/login',login)
 
 //home
 user_router.post('/search',Search)
-user_router.get('/category',authorization,category)
-user_router.get('/band-detail',authorization,bandDetail)
+user_router.get('/category',category)
+user_router.get('/band-detail',bandDetail)
 
 //profile
 user_router.post('/profile/:email',upload.single('photo'),profileDetail)

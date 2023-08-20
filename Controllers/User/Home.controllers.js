@@ -30,10 +30,10 @@ const Search = async (req, res) => {
       ],
     });
     console.log(band);
-    res.status(200).json({ message: band });
+    res.json({ message: band });
   } catch (error) {
     console.log(error);
-    res.status(500).json({ error: 'An error occurred while processing the search.' });
+    res.status(401).json({ error });
   }
 };
 
