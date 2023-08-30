@@ -22,7 +22,7 @@ user_router.post('/otp',verifyOtp)
 user_router.post('/login',login)
 
 //home
-user_router.post('/search',Search)
+// user_router.post('/search',Search)
 user_router.get('/category',category)
 user_router.get('/band-detail',bandDetail)
 
