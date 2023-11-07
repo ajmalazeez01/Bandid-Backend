@@ -18,8 +18,8 @@ mongoose();
 app.use(morgan("dev"))
 
 app.use(cors({
-  origin: [`http://localhost:3000`],
-  // origin: [`https://www.bandid.online`],
+  // origin: [`http://localhost:3000`],
+  origin: [`https://bandidonline.netlify.app/`],
   methods: ["GET", "POST", "DELETE", "PUT", "PATCH","OPTIONS"],
   credentials: true,
 }));
