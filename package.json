@@ -17,5 +17,15 @@
     "razorpay": "^2.9.1",
     "react-hook-form": "^7.45.0",
     "yup": "^1.2.0"
-  }
+  },
+  "scripts": {
+    "start": "node server.js"
+  },
+  "name": "bandid-backend",
+  "version": "1.0.0",
+  "main": "Server.js",
+  "devDependencies": {},
+  "author": "",
+  "license": "ISC",
+  "description": ""
 }
