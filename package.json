@@ -19,7 +19,7 @@
     "yup": "^1.2.0"
   },
   "scripts": {
-    "start": "node server.js"
+    "start": "node Server.js"
   },
   "name": "bandid-backend",
   "version": "1.0.0",
